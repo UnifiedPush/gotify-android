@@ -16,7 +16,7 @@ jobs:
         run: |
           cd app/build/outputs/apk/release
           echo $RELEASE_KEY | base64 -d > gotify-release-key.jks
-          jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore gotify-release-key.jks -storepass $STOREPASS -keypass $KEYPASS app-release-unsigned.apk gotify-release-key
+          jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore gotify-release-key.jks -storepass $STOREPASS -keypass $KEYPASS app-release-unsigned.apk unifiedpush
           jarsigner -verify app-release-unsigned.apk
           sudo apt-get install zipalign -y
           zipalign -v 4 app-release-unsigned.apk Gotify.apk

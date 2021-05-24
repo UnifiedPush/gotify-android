@@ -1,0 +1,10 @@
+**This version of gotify is a UnifiedPush Distributor: it can forward notification to other applications.**
+
+Gotify is a service for sending and receiving push notifications.
+
+This app subscribes to a server and creates push notifications for incoming messages.
+
+A self-hosted server is recommended for this app to work.
+
+More information at <https://unifiedpush.org/users/distributors/gotify/>
+

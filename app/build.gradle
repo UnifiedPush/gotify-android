@@ -8,11 +8,11 @@ apply plugin: 'kotlin-android'
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "com.github.gotify"
+        applicationId "com.github.gotify.up"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 6
-        versionName "2.1.2-UP1"
+        versionCode 7
+        versionName "2.1.2-UP2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }

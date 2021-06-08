@@ -6,5 +6,5 @@ This app subscribes to a server and creates push notifications for incoming mess
 
 A self-hosted server is recommended for this app to work.
 
-More information at <https://unifiedpush.org/users/distributors/gotify/>
+More information at https://unifiedpush.org/users/distributors/gotify/
 

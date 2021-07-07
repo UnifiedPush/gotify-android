@@ -11,8 +11,8 @@ android {
         applicationId "com.github.gotify.up"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 8
-        versionName "2.1.2-UP3"
+        versionCode 9
+        versionName "2.1.2-UP4"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }

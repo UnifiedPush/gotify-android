@@ -76,6 +76,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.github.gotify.Utils.first;
+import static com.github.gotify.service.PushNotificationKt.sendUnregistered;
 import static java.util.Collections.emptyList;
 
 public class MessagesActivity extends AppCompatActivity
@@ -595,6 +596,8 @@ public class MessagesActivity extends AppCompatActivity
 
     private void deleteApp(Long appId) {
         MessagingDatabase db = new MessagingDatabase(this);
+        String token = db.getTokenFromId(appId);
+        sendUnregistered(this,token);
         db.forceUnregisterApp(appId);
         db.close();
 

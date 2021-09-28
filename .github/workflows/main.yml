@@ -22,7 +22,7 @@ jobs:
         env:
           RELEASE_KEY: ${{ secrets.RELEASE_KEY }}
           RELEASE_STORE_PASSWORD: ${{ secrets.STOREPASS }}
-          RELEASE_KEY_ALIAS: gotify-release-key
+          RELEASE_KEY_ALIAS: unifiedpush
           RELEASE_KEY_PASSWORD: ${{ secrets.KEYPASS }}
       - if: ${{ startsWith(github.ref, 'refs/tags/v') }}
         uses: svenstaro/upload-release-action@v2

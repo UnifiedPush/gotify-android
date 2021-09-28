@@ -13,7 +13,6 @@ Gotify Android connects to [gotify/server](https://github.com/gotify/server) and
 
 Download the apk or get the app via F-Droid or Google Play.
 
-[<img src="https://play.google.com/intl/en_gb/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" width="150" />][playstore]
 [<img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" width="150"/>][fdroid]
 [<img src="download-badge.png" alt="Get it on F-Droid" width="150"/>][release]
 
@@ -78,8 +77,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
  [github-action]: https://github.com/UnifiedPush/gotify-android/actions?query=workflow%3ABuild
  [fdroid-badge]: https://img.shields.io/f-droid/v/com.github.gotify.up.svg
  [fdroid]: https://f-droid.org/de/packages/com.github.gotify.up/
- [fossa-badge]: https://app.fossa.io/api/projects/git%2Bgithub.com%2FUnifiedPush%2Fgotify-android.svg?type=shield
- [fossa]: https://app.fossa.io/projects/git%2Bgithub.com%2FUnifiedPush%2Fgotify-android
+ [fossa-badge]: https://app.fossa.io/api/projects/git%2Bgithub.com%2Fgotify%2Fandroid.svg?type=shield
+ [fossa]: https://app.fossa.io/projects/git%2Bgithub.com%2Fgotify%2Fandroid
  [release-badge]: https://img.shields.io/github/release/UnifiedPush/gotify-android.svg
  [release]: https://github.com/UnifiedPush/gotify-android/releases/latest
  

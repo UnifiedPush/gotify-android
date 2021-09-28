@@ -1,0 +1,2 @@
+* Merge 2.2.0 from upstream
+* Avoid a crash if app isn't found when trying to forward a message/endpoint

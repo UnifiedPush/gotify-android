@@ -10,7 +10,10 @@ import android.util.Log
  */
 
 fun sendMessage(context: Context, token: String, message: String){
-    val application = getApp(context, token)!!
+    val application = getApp(context, token)
+    if (application.isNullOrBlank()) {
+        return
+    }
     val broadcastIntent = Intent()
     broadcastIntent.`package` = application
     broadcastIntent.action = ACTION_MESSAGE
@@ -20,7 +23,10 @@ fun sendMessage(context: Context, token: String, message: String){
 }
 
 fun sendEndpoint(context: Context, token: String, endpoint: String) {
-    val application = getApp(context, token)!!
+    val application = getApp(context, token)
+    if (application.isNullOrBlank()) {
+        return
+    }
     val broadcastIntent = Intent()
     broadcastIntent.`package` = application
     broadcastIntent.action = ACTION_NEW_ENDPOINT
@@ -31,6 +37,9 @@ fun sendEndpoint(context: Context, token: String, endpoint: String) {
 
 fun sendUnregistered(context: Context, token: String){
     val application = getApp(context, token)
+    if (application.isNullOrBlank()) {
+        return
+    }
     val broadcastIntent = Intent()
     broadcastIntent.`package` = application
     broadcastIntent.action = ACTION_UNREGISTERED

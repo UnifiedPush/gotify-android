@@ -597,7 +597,7 @@ public class MessagesActivity extends AppCompatActivity
     private void deleteApp(Long appId) {
         MessagingDatabase db = new MessagingDatabase(this);
         String token = db.getTokenFromId(appId);
-        sendUnregistered(this,token);
+        sendUnregistered(this, token);
         db.forceUnregisterApp(appId);
         db.close();
 

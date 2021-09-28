@@ -8,7 +8,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.0'
+        classpath 'com.android.tools.build:gradle:4.0.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -36,7 +36,7 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-def download( String url, String filename ) {
+static def download(String url, String filename ) {
     new URL( url ).openConnection().with { conn ->
         new File( filename ).withOutputStream { out ->
             conn.inputStream.with { inp ->

@@ -1,4 +1,4 @@
-# Gotify Android [![Build Status][github-action-badge]][github-action] [![FOSSA Status][fossa-badge]][fossa] [![latest release version][release-badge]][release] [![F-Droid][fdroid-badge]][fdroid]
+# Gotify-UP Android [![Build Status][github-action-badge]][github-action] [![FOSSA Status][fossa-badge]][fossa] [![latest release version][release-badge]][release] [![F-Droid][fdroid-badge]][fdroid]
 
 <img align="right" src="app.gif" width="250" />
 
@@ -27,7 +27,9 @@ Here is one way to disable battery optimization for Gotify.
 
 * Open "Settings"
 * Search for "Battery Optimization"
-* Find "Gotify" and disable battery optimization
+* Find "Gotify-UP" and disable battery optimization
+
+See also https://dontkillmyapp.com for phone manufacturer specific instructions to disable battery optimizations.
 
 ### Minimize the Gotify foreground notification
 
@@ -35,7 +37,7 @@ Here is one way to disable battery optimization for Gotify.
 
 The foreground notification with content like `Listening to https://push.yourdomain.eu` can be manually minimized to be less intrusive:
 
-* Open Settings -> Apps -> Gotify
+* Open Settings -> Apps -> Gotify-UP
 * Click Notifications
 * Click on `Gotify foreground notification`
 * Select a different "Behavior" or "Importance" (depends on your android version)
@@ -67,18 +69,17 @@ $ ./gradlew build
 
 ## Versioning
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the
-[tags on this repository](https://github.com/gotify/android/tags).
+[tags on this repository](https://github.com/UnifiedPush/gotify-android/tags).
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
- [github-action-badge]: https://github.com/gotify/android/workflows/Build/badge.svg
- [github-action]: https://github.com/gotify/android/actions?query=workflow%3ABuild
- [playstore]: https://play.google.com/store/apps/details?id=com.github.gotify
- [fdroid-badge]: https://img.shields.io/f-droid/v/com.github.gotify.svg
- [fdroid]: https://f-droid.org/de/packages/com.github.gotify/
- [fossa-badge]: https://app.fossa.io/api/projects/git%2Bgithub.com%2Fgotify%2Fandroid.svg?type=shield
- [fossa]: https://app.fossa.io/projects/git%2Bgithub.com%2Fgotify%2Fandroid
- [release-badge]: https://img.shields.io/github/release/gotify/android.svg
- [release]: https://github.com/gotify/android/releases/latest
+ [github-action-badge]: https://github.com/UnifiedPush/gotify-android/workflows/Build/badge.svg
+ [github-action]: https://github.com/UnifiedPush/gotify-android/actions?query=workflow%3ABuild
+ [fdroid-badge]: https://img.shields.io/f-droid/v/com.github.gotify.up.svg
+ [fdroid]: https://f-droid.org/de/packages/com.github.gotify.up/
+ [fossa-badge]: https://app.fossa.io/api/projects/git%2Bgithub.com%2FUnifiedPush%2Fgotify-android.svg?type=shield
+ [fossa]: https://app.fossa.io/projects/git%2Bgithub.com%2FUnifiedPush%2Fgotify-android
+ [release-badge]: https://img.shields.io/github/release/UnifiedPush/gotify-android.svg
+ [release]: https://github.com/UnifiedPush/gotify-android/releases/latest
  

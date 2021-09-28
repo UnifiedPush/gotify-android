@@ -6,13 +6,13 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     defaultConfig {
         applicationId "com.github.gotify.up"
         minSdkVersion 19
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 9
-        versionName "2.1.2-UP4"
+        versionName "2.2.0-UP1.dev"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
@@ -35,6 +35,20 @@ android {
     }
 }
 
+if (project.hasProperty('sign')) {
+    android {
+        signingConfigs {
+            release {
+                storeFile file(System.getenv("RELEASE_STORE_FILE"))
+                storePassword System.getenv("RELEASE_STORE_PASSWORD")
+                keyAlias System.getenv("RELEASE_KEY_ALIAS")
+                keyPassword System.getenv("RELEASE_KEY_PASSWORD")
+            }
+        }
+    }
+    android.buildTypes.release.signingConfig android.signingConfigs.release
+}
+
 dependencies {
     implementation project(':client')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -55,6 +69,7 @@ dependencies {
     implementation 'io.noties.markwon:ext-tables:4.6.2'
     implementation "androidx.core:core-ktx:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'io.noties.markwon:ext-strikethrough:4.6.2'
 }
 
 configurations {

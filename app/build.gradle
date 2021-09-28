@@ -67,7 +67,7 @@ dependencies {
     implementation 'io.noties.markwon:image-picasso:4.6.2'
     implementation 'io.noties.markwon:image:4.6.2'
     implementation 'io.noties.markwon:ext-tables:4.6.2'
-    implementation "androidx.core:core-ktx:+"
+    implementation "androidx.core:core-ktx:1.6.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'io.noties.markwon:ext-strikethrough:4.6.2'
 }

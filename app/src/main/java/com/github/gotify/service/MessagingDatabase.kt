@@ -40,11 +40,11 @@ class MessagingDatabase(context: Context) : SQLiteOpenHelper(context, DB_NAME, n
         db.insert(TABLE_APPS,null,values)
     }
 
-    fun unregisterApp(packageName: String, connector_token: String){
+    fun unregisterApp(connector_token: String){
         val db = writableDatabase
-        val selection = "$FIELD_PACKAGE_NAME = ? AND $FIELD_CONNECTOR_TOKEN = ?"
-        val selectionArgs = arrayOf(packageName,connector_token)
-        db.delete(TABLE_APPS,selection,selectionArgs)
+        val selection = "$FIELD_CONNECTOR_TOKEN = ?"
+        val selectionArgs = arrayOf(connector_token)
+        db.delete(TABLE_APPS, selection, selectionArgs)
     }
 
     fun forceUnregisterApp(appId: Long){
@@ -54,10 +54,10 @@ class MessagingDatabase(context: Context) : SQLiteOpenHelper(context, DB_NAME, n
         db.delete(TABLE_APPS,selection,selectionArgs)
     }
 
-    fun strictIsRegistered(packageName: String, connector_token: String): Boolean {
+    fun isRegistered(connector_token: String): Boolean {
         val db = readableDatabase
-        val selection = "$FIELD_PACKAGE_NAME = ? AND $FIELD_CONNECTOR_TOKEN = ?"
-        val selectionArgs = arrayOf(packageName,connector_token)
+        val selection = "$FIELD_CONNECTOR_TOKEN = ?"
+        val selectionArgs = arrayOf(connector_token)
         return db.query(
                 TABLE_APPS,
                 null,
@@ -109,11 +109,11 @@ class MessagingDatabase(context: Context) : SQLiteOpenHelper(context, DB_NAME, n
         }
     }
 
-    fun getAppId(packageName: String): Long{
+    fun getAppId(connector_token: String): Long{
         val db = readableDatabase
         val projection = arrayOf(FIELD_APP_ID)
-        val selection = "$FIELD_PACKAGE_NAME = ?"
-        val selectionArgs = arrayOf(packageName)
+        val selection = "$FIELD_CONNECTOR_TOKEN = ?"
+        val selectionArgs = arrayOf(connector_token)
         return db.query(
                 TABLE_APPS,
                 projection,

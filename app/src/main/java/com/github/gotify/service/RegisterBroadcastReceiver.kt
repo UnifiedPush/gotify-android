@@ -21,15 +21,6 @@ class RegisterBroadcastReceiver: BroadcastReceiver() {
 
     private lateinit var settings: Settings
 
-    private fun unregisterApp(db: MessagingDatabase, application: String, token: String) {
-        // we only trust unregistered demands from the uid who registered the app
-        if (db.strictIsRegistered(application, token)) {
-            Log.i("RegisterService","Unregistering $application token: $token")
-            deleteApp(db, application)
-            db.unregisterApp(application, token)
-        }
-    }
-
     private fun registerApp(context: Context?, db: MessagingDatabase, application: String, connectorToken: String) {
         if (application.isBlank()) {
             Log.w("RegisterService","Trying to register an app without packageName")
@@ -38,7 +29,7 @@ class RegisterBroadcastReceiver: BroadcastReceiver() {
         Log.i("RegisterService","registering $application token: $connectorToken")
         // The app is registered with the same token : we re-register it
         // the client may need its endpoint again
-        if (db.strictIsRegistered(application, connectorToken)) {
+        if (db.isRegistered(connectorToken)) {
             Log.i("RegisterService","$application already registered")
             return
         }
@@ -68,12 +59,13 @@ class RegisterBroadcastReceiver: BroadcastReceiver() {
         return null
     }
 
-    private fun deleteApp(db: MessagingDatabase, appName: String){
+    private fun deleteApp(db: MessagingDatabase, token: String) {
         val client = ClientFactory.clientToken(settings.url(), settings.sslSettings(), settings.token())
         try {
-            val appId = db.getAppId(appName)
+            val appId = db.getAppId(token)
             Log.i("RegisterService","Deleting app with appId=$appId")
             Api.execute(client.createService(ApplicationApi::class.java).deleteApp(appId))
+            db.unregisterApp(token)
         } catch (e: ApiException) {
             Log.e("RegisterService","Could not delete app.", e)
         }
@@ -100,10 +92,9 @@ class RegisterBroadcastReceiver: BroadcastReceiver() {
             ACTION_UNREGISTER ->{
                 Log.i("Register","UNREGISTER")
                 val token = intent.getStringExtra(EXTRA_TOKEN)?: ""
-                val application = intent.getStringExtra(EXTRA_APPLICATION)?: ""
                 thread(start = true) {
                     val db = MessagingDatabase(context!!)
-                    unregisterApp(db,application, token)
+                    deleteApp(db, token)
                     db.close()
                     Log.i("RegisterService","Unregistration is finished")
                 }

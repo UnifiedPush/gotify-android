@@ -8,7 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper
 private const val DB_NAME = "gotify_service"
 private const val DB_VERSION = 1
 
-class MessagingDatabase(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION){
+class MessagingDatabase(context: Context):
+    SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
     private val TABLE_APPS = "apps"
     private val FIELD_PACKAGE_NAME = "package_name"
     private val FIELD_APP_ID = "app_id"
@@ -21,7 +22,7 @@ class MessagingDatabase(context: Context) : SQLiteOpenHelper(context, DB_NAME, n
             "$FIELD_CONNECTOR_TOKEN TEXT," +
             "PRIMARY KEY ($FIELD_CONNECTOR_TOKEN));"
 
-    override fun onCreate(db: SQLiteDatabase){
+    override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(CREATE_TABLE_APPS)
     }
 
@@ -29,35 +30,35 @@ class MessagingDatabase(context: Context) : SQLiteOpenHelper(context, DB_NAME, n
         throw IllegalStateException("Upgrades not supported")
     }
 
-    fun registerApp(packageName: String, appId :Long, gotify_token: String, connector_token: String){
+    fun registerApp(packageName: String, appId :Long, gotifyToken: String, connectorToken: String) {
         val db = writableDatabase
         val values = ContentValues().apply {
             put(FIELD_PACKAGE_NAME, packageName)
-            put(FIELD_APP_ID,appId.toString())
-            put(FIELD_GOTIFY_TOKEN,gotify_token)
-            put(FIELD_CONNECTOR_TOKEN,connector_token)
+            put(FIELD_APP_ID, appId.toString())
+            put(FIELD_GOTIFY_TOKEN, gotifyToken)
+            put(FIELD_CONNECTOR_TOKEN, connectorToken)
         }
-        db.insert(TABLE_APPS,null,values)
+        db.insert(TABLE_APPS, null, values)
     }
 
-    fun unregisterApp(connector_token: String){
+    fun unregisterApp(connectorToken: String) {
         val db = writableDatabase
         val selection = "$FIELD_CONNECTOR_TOKEN = ?"
-        val selectionArgs = arrayOf(connector_token)
+        val selectionArgs = arrayOf(connectorToken)
         db.delete(TABLE_APPS, selection, selectionArgs)
     }
 
-    fun forceUnregisterApp(appId: Long){
+    fun unregisterApp(appId: Long) {
         val db = writableDatabase
         val selection = "$FIELD_APP_ID = ?"
         val selectionArgs = arrayOf(appId.toString())
-        db.delete(TABLE_APPS,selection,selectionArgs)
+        db.delete(TABLE_APPS, selection, selectionArgs)
     }
 
-    fun isRegistered(connector_token: String): Boolean {
+    fun isRegistered(connectorToken: String): Boolean {
         val db = readableDatabase
         val selection = "$FIELD_CONNECTOR_TOKEN = ?"
-        val selectionArgs = arrayOf(connector_token)
+        val selectionArgs = arrayOf(connectorToken)
         return db.query(
                 TABLE_APPS,
                 null,
@@ -90,11 +91,11 @@ class MessagingDatabase(context: Context) : SQLiteOpenHelper(context, DB_NAME, n
         }
     }
 
-    fun getAppFromToken(token: String): String{
+    fun getPackageName(connectorToken: String): String {
         val db = readableDatabase
         val projection = arrayOf(FIELD_PACKAGE_NAME)
         val selection = "$FIELD_CONNECTOR_TOKEN = ?"
-        val selectionArgs = arrayOf(token)
+        val selectionArgs = arrayOf(connectorToken)
         return db.query(
                 TABLE_APPS,
                 projection,
@@ -109,11 +110,11 @@ class MessagingDatabase(context: Context) : SQLiteOpenHelper(context, DB_NAME, n
         }
     }
 
-    fun getAppId(connector_token: String): Long{
+    fun getAppId(connectorToken: String): Long{
         val db = readableDatabase
         val projection = arrayOf(FIELD_APP_ID)
         val selection = "$FIELD_CONNECTOR_TOKEN = ?"
-        val selectionArgs = arrayOf(connector_token)
+        val selectionArgs = arrayOf(connectorToken)
         return db.query(
                 TABLE_APPS,
                 projection,
@@ -146,15 +147,5 @@ class MessagingDatabase(context: Context) : SQLiteOpenHelper(context, DB_NAME, n
             if (cursor.moveToFirst() && column >= 0) cursor.getString(column) else ""
         }
         return token
-    }
-
-    private fun removeGotifyToken(packageName: String){
-        val db = writableDatabase
-        val values = ContentValues().apply {
-            put(FIELD_GOTIFY_TOKEN,"null")
-        }
-        val selection = "$FIELD_PACKAGE_NAME = ?"
-        val selectionArgs = arrayOf(packageName)
-        db.update(TABLE_APPS,values,selection,selectionArgs)
     }
 }

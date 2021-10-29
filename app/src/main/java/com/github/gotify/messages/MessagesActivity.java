@@ -598,7 +598,7 @@ public class MessagesActivity extends AppCompatActivity
         MessagingDatabase db = new MessagingDatabase(this);
         String token = db.getTokenFromId(appId);
         sendUnregistered(this, token);
-        db.forceUnregisterApp(appId);
+        db.unregisterApp(appId);
         db.close();
 
         ApiClient client =

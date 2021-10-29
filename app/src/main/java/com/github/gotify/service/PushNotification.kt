@@ -67,7 +67,7 @@ fun sendRegistrationRefused(context: Context, application: String, token: String
 
 fun getApp(context: Context, token: String): String?{
     val db = MessagingDatabase(context)
-    val application = db.getAppFromToken(token)
+    val application = db.getPackageName(token)
     db.close()
     if (application.isBlank()) {
         Log.w("getApp", "No app found for $token")

@@ -1,3 +1,7 @@
+# Deprecated
+
+We have stop maintaining this fork. If you wish to install an unifiedpush distributor, give a look at <https://unifiedpush.org/users/distributors/>. The most similar to gotify at this moment is [ntfy](https://ntfy.sh).
+
 # Gotify-UP Android [![Build Status][github-action-badge]][github-action] [![FOSSA Status][fossa-badge]][fossa] [![latest release version][release-badge]][release] [![F-Droid][fdroid-badge]][fdroid]
 
 <img align="right" src="app.gif" width="250" />
